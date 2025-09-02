@@ -1,0 +1,146 @@
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: Arial, sans-serif;
+ }
+
+ .custom-navbar {
+   background-color: #f4f4f9 !important;
+   padding: 5px 0;
+ }
+
+ .navbar-brand img {
+   max-height: 90px;
+   width: auto;
+   object-fit: contain;
+ }
+
+ .navbar-nav.mx-auto {
+   align-items: center;
+ }
+
+ .nav-link.custom-link {
+   color: #333 !important;
+   font-weight: 500;
+   position: relative;
+   transition: all 0.3s ease;
+   padding: 8px 12px;
+ }
+
+ .nav-link.custom-link:hover {
+   color: #c0392b !important;
+ }
+
+ .nav-link.custom-link::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: -3px;
+   width: 0;
+   height: 2px;
+   background-color: #c0392b;
+   transition: width 0.3s ease;
+ }
+
+ .nav-link.custom-link:hover::after {
+   width: 100%;
+ }
+
+ /* Search adjustments */
+ .search-input {
+   top: 0;
+   right: 30px;
+ }
+
+ /* Search */
+ .search-container {
+   position: relative;
+ }
+
+ .search-input {
+   position: absolute;
+   top: -5px;
+   right: 30px;
+   width: 0;
+   opacity: 0;
+   transition: all 0.3s ease;
+ }
+
+ .search-container.active .search-input {
+   width: 180px;
+   opacity: 1;
+ }
+
+ /* Form  */
+ .form-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 90vh;
+   background: #f4f4f9;
+ }
+
+ .form-card {
+   background: #fff;
+   padding: 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   width: 100%;
+   max-width: 400px;
+ }
+
+ .form-card h2 {
+   text-align: center;
+   margin-bottom: 20px;
+   color: #444;
+ }
+
+ .form-group {
+   margin-bottom: 15px;
+ }
+
+ .form-group label {
+   display: block;
+   margin-bottom: 6px;
+   color: #333;
+   font-weight: 500;
+ }
+
+ .form-group input {
+   width: 100%;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 6px;
+ }
+
+ .btn {
+   width: 100%;
+   padding: 12px;
+   background: #6c4c3b;
+   color: #fff;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: 0.3s;
+ }
+
+ .btn:hover {
+   background: #5a3f32;
+ }
+
+ .switch {
+   text-align: center;
+   margin-top: 15px;
+   color: #555;
+ }
+
+ .switch a {
+   color: #6c4c3b;
+   text-decoration: none;
+ }
+
+ .switch a:hover {
+   text-decoration: underline;
+ }
