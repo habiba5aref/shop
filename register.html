@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 <body>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg shadow-sm custom-navbar">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="tailor.png" alt="Logo" width="80">
+        <img src="tailor.png" alt="Logo" width="80" />
       </a>
     </div>
   </nav>
@@ -25,16 +27,24 @@
       <form id="registerForm">
         <div class="form-group">
           <label>Username</label>
-          <input type="text" id="newUsername" placeholder="Enter your username" required>
+          <input type="text" id="newUsername" placeholder="Enter your username" required />
         </div>
+
         <div class="form-group">
           <label>Email</label>
-          <input type="email" id="newEmail" placeholder="Enter your email" required>
+          <input type="email" id="newEmail" placeholder="Enter your email" required />
         </div>
+
+
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="newPassword" placeholder="Create a password" required>
+          <div class="password-wrapper">
+            <input type="password" id="newPassword" placeholder="Create a password" minlength="8" required>
+            <i class="fa-solid fa-eye toggle-password" data-target="newPassword"></i>
+          </div>
+          <small>Minimum 8 characters.</small>
         </div>
+
         <button type="submit" class="btn">Register</button>
         <p class="switch">Already have an account? <a href="login.html">Login</a></p>
       </form>
@@ -43,13 +53,5 @@
 
   <script src="main.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-

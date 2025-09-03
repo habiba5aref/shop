@@ -53,9 +53,10 @@ html, body {
   width: 100%;
 }
 
-/* Search  */
+/* Search */
 .search-container {
   position: relative;
+  display: inline-block;
 }
 
 .search-input {
@@ -68,11 +69,11 @@ html, body {
 }
 
 .search-container.active .search-input {
-  width: 160px;
+  width: 180px;
   opacity: 1;
 }
 
-/* Form  */
+/* Form */
 .form-container {
   display: flex;
   justify-content: center;
@@ -146,7 +147,33 @@ html, body {
   text-decoration: underline;
 }
 
-/* Media Queries */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; 
+}
+
+.password-wrapper .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.navbar .d-flex.align-items-center {
+  gap: 15px;
+}
+
+#userSection a,
+#userSection i {
+  font-size: 16px;
+}
+
 @media (max-width: 768px) {
   .navbar-brand img {
     max-height: 55px;
@@ -164,8 +191,39 @@ html, body {
   .form-card {
     padding: 20px;
   }
-}
 
+  .navbar .d-flex.align-items-center {
+    gap: 10px;
+  }
+
+  #userSection {
+    gap: 10px;
+  }
+
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #userSection {
+    order: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-toggler {
+    order: 2;
+    margin-left: 8px;
+  }
+
+  #navbarNav {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+ 
 @media (max-width: 480px) {
   .navbar-brand img {
     max-height: 45px;

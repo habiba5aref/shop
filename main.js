@@ -1,19 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("script.js loaded");
-  try {
-    const navLinks = document.getElementById("navLinks");
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
+  const navLinks = document.getElementById("navLinks");
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
 
-    const currentPage = window.location.pathname.split("/").pop();
-    const loggedIn = localStorage.getItem("loggedIn");
-    console.log({ currentPage, loggedIn });
+  const currentPage = window.location.pathname.split("/").pop();
+  const loggedIn = localStorage.getItem("loggedIn");
 
-    // Navbar links (keep simple)
-    if (navLinks) {
-      if (currentPage === "login.html" || currentPage === "register.html") {
-        navLinks.innerHTML = "";
-      } else {
+  // Navbar Links 
+  if (navLinks) {
+    if (currentPage === "login.html" || currentPage === "register.html") {
+      navLinks.innerHTML = "";
+    } else {
+      if (loggedIn === "true") {
         navLinks.innerHTML = `
           <li class="nav-item"><a class="nav-link custom-link" href="index.html">PRODUCTS</a></li>
           <li class="nav-item"><a class="nav-link custom-link" href="#">SHOP</a></li>
@@ -21,116 +19,102 @@ document.addEventListener("DOMContentLoaded", () => {
           <li class="nav-item"><a class="nav-link custom-link" href="#">SERVICES</a></li>
           <li class="nav-item"><a class="nav-link custom-link" href="#">CONTACT</a></li>
         `;
+      } else {
+        navLinks.innerHTML = "";
       }
     }
+  }
 
-    // Login / Logout 
-    if (loggedIn === "true") {
-      if (loginBtn) loginBtn.classList.add("d-none");
-      if (logoutBtn) logoutBtn.classList.remove("d-none");
-    } else {
-      if (loginBtn) loginBtn.classList.remove("d-none");
-      if (logoutBtn) logoutBtn.classList.add("d-none");
-    }
-
+  // Login / Logout buttons 
+  if (loggedIn === "true") {
+    if (loginBtn) loginBtn.classList.add("d-none");
     if (logoutBtn) {
+      logoutBtn.classList.remove("d-none");
       logoutBtn.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.removeItem("loggedIn");
-        localStorage.removeItem("currentUser");
         alert("You have logged out!");
         window.location.href = "index.html";
       });
     }
-
-    // Search 
-    const searchIcon = document.querySelector(".search-icon");
-    const searchContainer = document.querySelector(".search-container");
-    const searchInput = document.getElementById("searchInput");
-    if (searchIcon && searchContainer && searchInput) {
-      searchIcon.addEventListener("click", () => {
-        searchContainer.classList.toggle("active");
-        if (searchContainer.classList.contains("active")) {
-          searchInput.style.display = "block";
-          searchInput.focus();
-        } else {
-          searchInput.style.display = "none";
-          searchInput.value = "";
-        }
-      });
-    }
-
-    // Register
-    const registerForm = document.getElementById("registerForm");
-    if (registerForm) {
-      console.log("registerForm found");
-      registerForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log("register submit fired");
-
-        const newUsername = (document.getElementById("newUsername") || {}).value?.trim() || "";
-        const newEmail = (document.getElementById("newEmail") || {}).value?.trim() || "";
-        const newPassword = (document.getElementById("newPassword") || {}).value || "";
-
-        if (!newUsername || !newEmail || newPassword.length < 4) {
-          alert("Please fill all fields. Password must be at least 4 characters.");
-          return;
-        }
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-        // check 
-        if (users.some(u => u.username === newUsername || u.email === newEmail)) {
-          alert("Username or email already exists. Choose another.");
-          return;
-        }
-
-        users.push({ username: newUsername, email: newEmail, password: newPassword });
-        localStorage.setItem("users", JSON.stringify(users));
-        console.log("Registered users:", users);
-
-        alert("Registration successful! Please login.");
-        window.location.href = "login.html";
-      });
-    } else {
-      console.log("No registerForm on this page");
-    }
-
-    // Login
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-      console.log("loginForm found");
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log("login submit fired");
-
-        const usernameOrEmail = (document.getElementById("username") || {}).value?.trim() || "";
-        const password = (document.getElementById("password") || {}).value || "";
-
-        if (!usernameOrEmail || !password) {
-          alert("Please enter credentials.");
-          return;
-        }
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const user = users.find(u =>
-          (u.username === usernameOrEmail || u.email === usernameOrEmail) && u.password === password
-        );
-
-        if (user) {
-          localStorage.setItem("loggedIn", "true");
-          localStorage.setItem("currentUser", user.username);
-          alert("Login successful!");
-          window.location.href = "index.html";
-        } else {
-          alert("Invalid username/email or password.");
-        }
-      });
-    } else {
-      console.log("No loginForm on this page");
-    }
-
-  } catch (err) {
-    console.error("Error in script.js:", err);
+  } else {
+    if (loginBtn) loginBtn.classList.remove("d-none");
+    if (logoutBtn) logoutBtn.classList.add("d-none");
   }
+
+  // Toggle Password 
+  document.querySelectorAll(".toggle-password").forEach((icon) => {
+    icon.addEventListener("click", () => {
+      const targetId = icon.getAttribute("data-target");
+      const input = document.getElementById(targetId);
+      if (!input) return;
+
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
+    });
+  });
+
+  // Login 
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById("username").value.trim();
+      const passwordInput = document.getElementById("password").value;
+
+      const storedUser = JSON.parse(localStorage.getItem("userData"));
+      if (storedUser && emailInput === storedUser.email && passwordInput === storedUser.password) {
+        localStorage.setItem("loggedIn", "true");
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Invalid login. Please check your email and password.");
+      }
+    });
+  }
+
+  const registerForm = document.getElementById("registerForm");
+  if (registerForm) {
+    registerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newUsername = document.getElementById("newUsername").value.trim();
+      const newEmail = document.getElementById("newEmail").value.trim();
+      const newPassword = document.getElementById("newPassword").value;
+
+      if (!newUsername || !newEmail || !newPassword) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (newPassword.length < 8) {
+        alert("Password must be at least 8 characters.");
+        return;
+      }
+
+      const userData = { username: newUsername, email: newEmail, password: newPassword };
+      localStorage.setItem("userData", JSON.stringify(userData));
+      alert("Registration successful! Please login.");
+      window.location.href = "login.html";
+    });
+  }
+  
+  // Search Toggle
+  const searchIcon = document.querySelector(".search-icon");
+  const searchContainer = document.querySelector(".search-container");
+
+  if (searchIcon && searchContainer) {
+    searchIcon.addEventListener("click", () => {
+      searchContainer.classList.toggle("active");
+      const input = searchContainer.querySelector(".search-input");
+      if (input) input.focus();
+    });
+  } 
+
 });
