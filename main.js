@@ -1,66 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const navLinks = document.getElementById("navLinks");
-//   const loggedIn = localStorage.getItem("loggedIn");
-
-//   const currentPage = window.location.pathname.split("/").pop();
-
-//   if (navLinks) {
-    
-//     if (currentPage === "login.html" || currentPage === "register.html") {
-//       navLinks.innerHTML = "";
-//     } else {
-      
-//       navLinks.innerHTML = `
-//        <li><a class="nav-link custom-link" href="index.html">PRODUCTS</a></li>
-//         <li><a class="nav-link custom-link" href="#">SHOP</a></li>
-//         <li><a class="nav-link custom-link" href="#">WEDDINGS</a></li>
-//        <li><a class="nav-link custom-link" href="#">SERVICES</a></li>
-//       <li><a class="nav-link custom-link" href="#">CONTACT</a></li>
-//       `;
-//     }
-//   }
-
-//   // Login form
-//   const loginForm = document.getElementById("loginForm");
-//   if (loginForm) {
-//     loginForm.addEventListener("submit", (e) => {
-//       e.preventDefault();
-//       const username = document.getElementById("username").value;
-//       const password = document.getElementById("password").value;
-
-//       if (username && password.length >= 4) {
-//         localStorage.setItem("loggedIn", "true");
-//         alert("Login successful!");
-//         window.location.href = "index.html";
-//       } else {
-//         alert("Invalid login. Password must be at least 4 characters.");
-//       }
-//     });
-//   }
-
-//   // Register form
-//   const registerForm = document.getElementById("registerForm");
-//   if (registerForm) {
-//     registerForm.addEventListener("submit", (e) => {
-//       e.preventDefault();
-//       const newUsername = document.getElementById("newUsername").value;
-//       const newPassword = document.getElementById("newPassword").value;
-
-//       if (newUsername && newPassword.length >= 4) {
-//         alert("Registration successful! Please login.");
-//         window.location.href = "login.html";
-//       } else {
-//         alert("Password must be at least 4 characters.");
-//       }
-//     });
-//   }
-
-//  });
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
   console.log("script.js loaded");
   try {
@@ -87,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Login / Logout display
+    // Login / Logout 
     if (loggedIn === "true") {
       if (loginBtn) loginBtn.classList.add("d-none");
       if (logoutBtn) logoutBtn.classList.remove("d-none");
@@ -106,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Search toggle (no change)
+    // Search 
     const searchIcon = document.querySelector(".search-icon");
     const searchContainer = document.querySelector(".search-container");
     const searchInput = document.getElementById("searchInput");
@@ -123,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // ---------- Register ----------
+    // Register
     const registerForm = document.getElementById("registerForm");
     if (registerForm) {
       console.log("registerForm found");
@@ -142,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        // check existing by username or email
+        // check 
         if (users.some(u => u.username === newUsername || u.email === newEmail)) {
           alert("Username or email already exists. Choose another.");
           return;
@@ -159,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("No registerForm on this page");
     }
 
-    // ---------- Login ----------
+    // Login
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
       console.log("loginForm found");

@@ -7,7 +7,7 @@
 
 html, body {
   width: 100%;
-  overflow-x: hidden; /* منع السكرول الأفقي */
+  overflow-x: hidden; 
 }
 
 .custom-navbar {
@@ -16,7 +16,7 @@ html, body {
 }
 
 .navbar-brand img {
-  max-height: 70px; /* قللتها شوية عشان الموبايل */
+  max-height: 70px; 
   width: auto;
   object-fit: contain;
 }
@@ -31,7 +31,7 @@ html, body {
   position: relative;
   transition: all 0.3s ease;
   padding: 8px 12px;
-  white-space: nowrap; /* يخلي اللينكات ما تكسرش وتعمل سكرول */
+  white-space: nowrap; 
 }
 
 .nav-link.custom-link:hover {
@@ -53,7 +53,7 @@ html, body {
   width: 100%;
 }
 
-/* Search adjustments */
+/* Search  */
 .search-container {
   position: relative;
 }
@@ -79,7 +79,7 @@ html, body {
   align-items: center;
   min-height: 90vh;
   background: #f4f4f9;
-  padding: 15px; /* عشان مايلزقش فى الموبايل */
+  padding: 15px; 
 }
 
 .form-card {
@@ -146,9 +146,7 @@ html, body {
   text-decoration: underline;
 }
 
-/* =====================
-   Media Queries
-===================== */
+/* Media Queries */
 @media (max-width: 768px) {
   .navbar-brand img {
     max-height: 55px;
